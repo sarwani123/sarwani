@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Staff Dashboard</h2>
+<h3>My Assigned Events</h3>
+{% for event in assigned events %}
+    <p>{{event.date}}-{{event.description}}</p>
+{% else%}
+    <p>You have no assigned events</p>
+{% endfor %}
+
+<h3>Available Events</h3>
+{% for event in available_events %}
+    <p>{{event.date}}-{{event.description}}</p>
+    <form method="POST"
+        action="{{url_for('signup_event',event_id=event.id)}}">
+        <button type="submit">Sign Up</button>
+    </form>
+{% else %}
+    <p>No available events.</p>
+{% endfor %}
+{% endblock %}
+

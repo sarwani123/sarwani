@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+{%block content%}
+<h2>Owner Dashboard</h2>
+
+<a href="{{url_for('create_staff')}}">Create Staff Account</a>
+
+<h3>Staff Members</h3>
+{% for member in staff members %}
+    <p>{{ members.username}}</p>
+{% else %}
+    <p>No staff accounts have been created.</p>
+{% endfor %}
+<h3>All Events</h3>
+{% for event in events %}
+    <p>{{ event.date }} — {{ event.description }}</p>
+    <p>Staff assigned:</p>
+    {% for member in event.staff %}
+        <p>{{ member.username }}</p>
+    {% else %}
+        <p>No staff members assigned.</p>
+    {% endfor %}
+{% else %}
+    <p>There are currently no events.</p>
+{% endfor %}
+{% endblock %}

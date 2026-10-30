@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Customer Dashboard</h2>
+<h3>Request an Event</h3>
+<form method="POST" action="{{url_for('create_event')}}">
+    <input type="date" name="date" required>
+    <textarea name="description"
+        placeholder="Describe your event" required></textarea>
+        <button type="submit">Request Event</button>
+</form>
+<h3>My Events</h3>
+{% for event in events %}
+    <p>{{ event.date }} — {{ event.description }}</p>
+    <form method="POST"
+          action="{{ url_for('cancel_event', event_id=event.id) }}">
+        <button type="submit">Cancel Event</button>
+    </form>
+{% else %}
+    <p>You have not requested any events.</p>
+{% endfor %}
+{% endblock %}

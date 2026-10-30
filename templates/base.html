@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Catering Website</title>
+    </head>
+    <body>
+        <h1>Catering Company</h1>
+       {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+     {% if current_role %}
+        <p><a href="{{ url_for('dashboard') }}">Dashboard</a>
+        | <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+    </body>
+</html>
